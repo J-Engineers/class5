@@ -5,6 +5,10 @@ const categorySchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
+    shop: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Shop'
+    },
     name: {
         type: String
     },

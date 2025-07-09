@@ -5,7 +5,6 @@ const schema = Joi.object({
     name: Joi.string().required(),
     location: Joi.string(),
     brand: Joi.string().required(),
-    userId: Joi.string().required(),
 });
 
 const validateShopData = async (req, res, next) => {

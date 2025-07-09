@@ -3,6 +3,7 @@ const ErrorResponse = require("../../utils/ErrorResponse")
 
 const editShop = async ( req, res, next) => {
     const { name, location, brand, shopId } = req.body
+    const userId = req.user._id
     const data = {
         name,
         location,
@@ -13,7 +14,7 @@ const editShop = async ( req, res, next) => {
     if(!check){
         throw new ErrorResponse(`The shop ${shopId} does not exist`, 400)
     }
-    if (!check.user == req.user._id){
+    if (!check.user == userId){
         throw new ErrorResponse(`The shop ${shopId} does not belong to you`, 400)
     }
     check.name = name

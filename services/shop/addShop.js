@@ -4,7 +4,8 @@ const Shop = require("../../models/shop")
 const ErrorResponse = require("../../utils/ErrorResponse")
 
 const addShop = async ( req, res, next) => {
-    const { name, location, userId, brand } = req.body
+    const { name, location, brand } = req.body
+    const userId = req.user._id
     const data = {
         name,
         location,

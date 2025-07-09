@@ -2,12 +2,11 @@ const Joi = require("joi");
 const ErrorResponse = require("../../utils/ErrorResponse");
 
 const schema = Joi.object({
-    name: Joi.string().required(),
-    description: Joi.string(),
-    shopId: Joi.string().required(),
+    email: Joi.string().required(),
+    password: Joi.string().required()
 });
 
-const validateCategoryData = async (req, res, next) => {
+const loginValidation = async (req, res, next) => {
     try {
         const result = await schema.validateAsync(req.body)
         req.body = result
@@ -17,6 +16,6 @@ const validateCategoryData = async (req, res, next) => {
     }
 }
 
-module.exports = validateCategoryData
+module.exports = loginValidation
 
 
