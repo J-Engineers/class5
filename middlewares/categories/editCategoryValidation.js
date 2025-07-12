@@ -4,7 +4,7 @@ const ErrorResponse = require("../../utils/ErrorResponse");
 const schema = Joi.object({
     name: Joi.string().required(),
     description: Joi.string(),
-    categoryId: Joi.string().required(),
+    id: Joi.string().required(),
 });
 
 const validateCategoryDataEdit = async (req, res, next) => {

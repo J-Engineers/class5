@@ -20,7 +20,7 @@ const editShop = async ( req, res, next) => {
     check.name = name
     check.location = location
     check.brand = brand
-    return await Shop.save()
+    return await check.save()
 }
 
 module.exports = editShop
