@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const Category = require("../../models/Category");
 
 const viewCategories = async (req, res, next) => {
@@ -7,17 +8,17 @@ const viewCategories = async (req, res, next) => {
 
   const skip = (page - 1) * limit
 
-  const shop = req.query.shop;
+  const shop =  new mongoose.Types.ObjectId(req.query.shop);
 
   let category = await Category.find().populate('user', 'name email').populate('shop', 'name location').skip(skip).limit(limit);
   let totalData = await Category.countDocuments();
 
   if (shop) {
-    category = await Category.find(shop).populate('user', 'name email').populate('shop', 'name location').skip(skip).limit(limit);
-    totalData = await Category.countDocuments(shop);
+    category = await Category.find({shop: shop}).populate('user', 'name email').populate('shop', 'name location').skip(skip).limit(limit);
+    totalData = await Category.countDocuments({shop: shop});
   }
 
-  const pageNumber = Math.round(totalData / limit);
+  const pageNumber = Math.ceil(totalData / limit);
 
   const metaData = {
     totalData,

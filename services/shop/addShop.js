@@ -12,8 +12,6 @@ const addShop = async ( req, res, next) => {
         user: userId,
         brand
     }
-
-   
     const check = await Shop.findOne({name:name, user: userId})
     if(check){
         throw new ErrorResponse(`The shop ${data.name} already exist`, 400)

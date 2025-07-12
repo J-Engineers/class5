@@ -3,11 +3,11 @@ const ErrorResponse = require("../../utils/ErrorResponse")
 
 const viewShop = async ( req, res, next) => {
     const {  shopId } = req.params
-    const check = await Shop.findById(shopId)
-    if(!check){
+    const shop = await Shop.findById(shopId).populate('user', 'name email')
+    if(!shop){
         throw new ErrorResponse(`The shop ${shopId} does not exist`, 400)
     }
-    return check
+    return shop
 }
 
 module.exports = viewShop

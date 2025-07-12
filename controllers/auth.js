@@ -26,7 +26,7 @@ module.exports.viewUser = async (req, res, next) => {
     const result = await viewUser(req, res, next)
      res.status(201).json({
         success: true,
-        message: "UserviewUser",
+        message: "User",
         data: result
     });
 }
